@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springRestApi.dao.WordsDAO">
+    <select id="getAllWords"
+            resultType="com.example.springRestApi.dto.Word">
+        SELECT * FROM word
+    </select>
+    <select id="getWord" parameterType="int"
+            resultType="com.example.springRestApi.dto.Word">
+        SELECT * FROM word WHERE seq = #{seq}
+    </select>
+    <insert id="insertWord"
+            parameterType="com.example.springRestApi.dto.Word"
+            useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO
+            word (word, parts, mean)
+        VALUES
+            (#{word}, #{parts}, #{mean})
+    </insert>
+    <update id="updateWord">
+        UPDATE word
+            SET word = #{word.word}, parts = #{word.parts}, mean=#{word.mean}
+            WHERE seq = #{seq}
+    </update>
+    <delete id="deleteWord" parameterType="int">
+        DELETE FROM
+            word
+        WHERE
+            seq = #{seq}
+    </delete>
+</mapper>
