@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springRestApi.dao.IdiomsDAO">
+    <select id="getAllIdioms"
+            resultType="com.example.springRestApi.dto.Idiom">
+        SELECT * FROM idiom
+    </select>
+    <select id="getIdiom" parameterType="int"
+            resultType="com.example.springRestApi.dto.Idiom">
+        SELECT * FROM idiom WHERE seq = #{seq}
+    </select>
+    <insert id="insertIdiom"
+            parameterType="com.example.springRestApi.dto.Idiom"
+            useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO
+            idiom (idiom, mean)
+        VALUES
+            (#{idiom}, #{mean})
+    </insert>
+    <update id="updateIdiom">
+        UPDATE idiom
+        SET idiom = #{idiom.idiom}, mean=#{idiom.mean}
+        WHERE seq = #{seq}
+    </update>
+    <delete id="deleteIdiom" parameterType="int">
+        DELETE FROM
+            idiom
+        WHERE
+            seq = #{seq}
+    </delete>
+</mapper>
